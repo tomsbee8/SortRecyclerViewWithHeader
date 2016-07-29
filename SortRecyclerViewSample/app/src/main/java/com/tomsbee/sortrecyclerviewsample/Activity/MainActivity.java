@@ -132,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
 
         adapter =new UserListAdapter(this, new ArrayList<UserInfo>());
         mainRecyclerView.setAdapter(adapter);
+    
+         //设置header 的字母
+        final StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(adapter);
+        mainRecyclerView.addItemDecoration(headersDecor);
+        
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mainRecyclerView.setLayoutManager(layoutManager);
         mainHeader.attachTo(mainRecyclerView);
@@ -152,19 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        //设置header 的字母
-        final StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(adapter);
-        mainRecyclerView.addItemDecoration(headersDecor);
-        mainRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
     }
 
     private void updateView(){
         adapter.setmSourceDateList(dataSource);
         adapter.notifyDataSetChanged();
     }
-
-
-
 }
